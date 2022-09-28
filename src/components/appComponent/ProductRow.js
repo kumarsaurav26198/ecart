@@ -1,0 +1,73 @@
+import React from 'react';
+import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
+
+export function ProductRow({ name, price, image, onPress, onClick }) {
+    return (
+        <TouchableOpacity style={styles.card} onPress={onPress}>
+            <Image
+                style={styles.thumb}
+                source={image}
+            />
+            <View style={styles.infoContainer}>
+                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.price}>Rs..  {price} ₹</Text>
+                <TouchableOpacity onClick={onClick} style={styles.heartIcon}>
+                    <Image
+                        style={{ height: 24, width: 24, position: "absolute", top: 0 }}
+                        source={require("../../assets/images/heart.png")}
+                    />
+                </TouchableOpacity>
+            </View>
+        </TouchableOpacity>
+    );
+}
+
+const styles = StyleSheet.create({
+    card: {
+        height: 260,
+        width: "47%",
+
+        backgroundColor: 'white',
+        borderRadius: 16,
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        shadowColor: 'black',
+        shadowOffset: {
+            height: 0,
+            width: 0,
+        },
+        elevation: 1,
+        marginVertical: 20,
+        marginHorizontal: 10
+    },
+    thumb: {
+        height: 160,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        width: '100%',
+    },
+    infoContainer: {
+        padding: 16,
+    },
+    name: {
+        fontSize: 22,
+        fontWeight: 'bold',
+    },
+    price: {
+        fontSize: 16,
+        fontWeight: '600',
+        marginBottom: 8,
+    },
+    heartIcon: {
+        height: 30,
+        width: 30,
+        // backgroundColor: '#fff',
+        borderRadius: 50,
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
+        position: 'absolute',
+        top: -150,
+        right: 0
+    }
+});

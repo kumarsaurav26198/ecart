@@ -12,10 +12,10 @@ export default function CustomText({ text }) {
 const styles = StyleSheet.create({
     text: {
         color: "black",
-        fontSize: 24,
+        fontSize: 20,
         fontFamily: "fantasy",
         fontWeight: "bold",
         paddingHorizontal: 15,
-        paddingVertical: 5
+        // paddingVertical: 5
     }
 });
