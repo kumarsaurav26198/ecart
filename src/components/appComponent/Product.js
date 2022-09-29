@@ -3,14 +3,21 @@ import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 export function Product({ name, price, image, onPress, onClick }) {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <View style={styles.card} onPress={onPress}>
       <Image
         style={styles.thumb}
         source={image}
       />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>Rs..  {price} ₹</Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 10, paddingRight: 10 }}>
+
+          <Text style={styles.price}>Rs..  {price} ₹</Text>
+          <TouchableOpacity style={{ marginTop: 5, borderWidth: 0.2, padding: 5, borderRadius: 15 }}>
+
+            <Text>Add cart</Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity onClick={onClick}>
           <Image
             style={{ height: 24, width: 24 }}
@@ -18,7 +25,7 @@ export function Product({ name, price, image, onPress, onClick }) {
           />
         </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 

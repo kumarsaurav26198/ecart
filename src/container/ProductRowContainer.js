@@ -2,18 +2,30 @@ import { StyleSheet, FlatList, View } from 'react-native';
 import { useState, useEffect } from 'react';
 import { getProducts } from '../services/ProductsService';
 import { ProductRow } from '../components/appComponent/ProductRow';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemToCart } from '../redux/action/cartAction';
+import { addItemToWishlist } from '../redux/action/wishlist';
 
 
 export default function ProductRowContainer({ navigation }) {
+
+    const dispatch = useDispatch();
+
+
+    const items = useSelector(state => state.cartReducers.length);
+    // console.warn(items);
+
+
     function renderProduct({ item: product }) {
         return (
             <ProductRow
                 {...product}
-            // onPress={() => {
-            //     navigation.navigate('ProductDetails', {
-            //         productId: product.id,
-            //     });
-            // }}
+                onAddToCart={x => {
+                    dispatch(addItemToCart(product));
+                }}
+                onAddToWishlist={x => {
+                    dispatch(addItemToWishlist(product));
+                }}
             />
         );
     }

@@ -1,13 +1,20 @@
-import { StyleSheet, Image, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Image, TouchableOpacity, View, Text } from 'react-native';
 import React, { useState } from 'react';
 import Main from '../dashboard/bottom/Main';
 import Search from '../dashboard/bottom/Search';
 import Cart from '../dashboard/bottom/Cart';
 import Wishlist from '../dashboard/bottom/Wishlist';
 import Profile from '../dashboard/bottom/Profile';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 export default function HomeScreen() {
     const [selectedTab, setSelectedTab] = useState(0);
+    const cartLenght = useSelector(state => state.cartReducers.length);
+    const wishLength = useSelector(state => state.wishlistReducers.length);
+    const wishlistLength = 0;
+
+
     return (
         <>
             <View style={{ flex: 1 }}>
@@ -44,6 +51,9 @@ export default function HomeScreen() {
                             setSelectedTab(2);
                         }}
                     >
+                        <View style={styles.countCart}>
+                            <Text style={{ color: "#fff", fontWeight: "600" }}>{cartLenght}</Text>
+                        </View>
                         <Image source={require("../../../assets/images/bag.png")} style={{ width: 24, height: 24, tintColor: "#fff" }} />
                     </TouchableOpacity>
 
@@ -52,6 +62,9 @@ export default function HomeScreen() {
                             setSelectedTab(3);
                         }}
                     >
+                        <View style={[styles.countCart, styles.WishlistCount]}>
+                            <Text style={{ color: "#fff" }}>{wishLength}</Text>
+                        </View>
                         <Image source={require("../../../assets/images/heart.png")} style={{
                             width: 24, height: 24,
                             tintColor: selectedTab == 3 ? "#000" : "#8e8e8e"
@@ -92,5 +105,21 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    countCart: {
+        padding: 2,
+        // width: 15,
+        // height: 20,
+        backgroundColor: "red",
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        position: 'absolute',
+        top: 5,
+        right: 5, zIndex: 5
+    },
+    WishlistCount: {
+        top: 15,
+        right: 23,
+    }
 
 });

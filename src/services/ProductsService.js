@@ -31,7 +31,7 @@ const PRODUCTS = [
     {
         id: 101,
         name: 'FastLane Toy Car',
-        price: 6000000,
+        price: 6000,
         image: require('../assets/products/puma.jpg'),
 
         description: 'A model car, or toy car, is a miniature representation of an automobile. Other miniature motor vehicles, such as trucks, buses, or even ATVs, etc. are often included in this general category.'
